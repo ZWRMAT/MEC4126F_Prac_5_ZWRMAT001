@@ -105,8 +105,4 @@ void init_external_interrupts(void){
 	NVIC_EnableIRQ(EXTI2_3_IRQn);
 }
 
-void EXTI2_3_IRQHandler(void){
-	EXTI -> PR &= EXTI_PR_PR3;
-	selection++;
-	delay(50000);
-}
+
