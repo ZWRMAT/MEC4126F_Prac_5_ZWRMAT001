@@ -99,10 +99,14 @@ void init_switches(void){
 
 void init_external_interrupts(void){
 	RCC -> APB2ENR |= RCC_APB2ENR_SYSCFGCOMPEN;
-	SYSCFG -> EXTICR[2] |= SYSCFG_EXTICR1_EXTI3_PA;
+	SYSCFG -> EXTICR[2] |= SYSCFG_EXTICR1_EXTI3_PA3;
 	EXTI -> IMR |= EXTI_IMR_MR3;
 	EXTI -> FTSR |= EXTI_FTSR_TR3;
 	NVIC_EnableIRQ(EXTI2_3_IRQn);
 }
 
-
+void EXTI2_3_IRQHandler(void){
+	EXTI -> PR &= EXTI_PR_PR3;
+	selection++;
+	delay(50000);
+}
